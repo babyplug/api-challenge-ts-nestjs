@@ -1,6 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, ManyToMany, OneToOne } from 'typeorm';
 import { Author } from 'src/author/entity/author.entity';
 import { PhotoMetadata } from 'src/photo-metadata/entity/photo-metadata.entity';
+import { Album } from 'src/album/entity/album.entity';
 
 @Entity()
 export class Photo {
@@ -36,6 +37,6 @@ export class Photo {
   })
   metadata: PhotoMetadata;
 
-  // @ManyToMany(type => Album, album => album.photos)
-  // albums: Album[];
+  @ManyToMany(type => Album, album => album.photos)
+  albums: Album[];
 }
