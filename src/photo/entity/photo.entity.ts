@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { Author } from 'src/author/entity/author.entity';
 
 @Entity()
 export class Photo {
@@ -19,4 +20,13 @@ export class Photo {
 
   @Column()
   isPublished: boolean;
+
+  @Column()
+  authorId: number;
+
+  @ManyToOne(type => Author, author => author.photos, {
+      eager: true,
+  })
+  @JoinColumn()
+  author: Author;
 }

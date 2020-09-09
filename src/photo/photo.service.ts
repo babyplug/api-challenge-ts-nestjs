@@ -3,12 +3,13 @@ import { Repository } from 'typeorm';
 import { Photo } from './entity/photo.entity';
 import { PhotoRepository } from './repository/photo.repository';
 import { PhotoDto } from './dto/photo.dto';
+import { CONSTANT } from 'src/constant/constant';
 
 @Injectable()
 export class PhotoService {
     constructor(
         // @Inject('PHOTO_REPOSITORY') private photoRepository: Repository<Photo>,
-        @Inject('PHOTO_REPOSITORY') private photoRepository: PhotoRepository,
+        @Inject(CONSTANT.PHOTO_REPOSITORY) private photoRepository: PhotoRepository,
     ){}
 
     findAll(): Promise<Photo[]> {

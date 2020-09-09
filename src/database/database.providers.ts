@@ -9,7 +9,7 @@ export const databaseProviders = [
       port: 3306,
       username: 'root',
       password: '',
-      database: 'api_challenge_typeorm',
+      database: 'api_challenge_nestjs',
       entities: [
           __dirname + '/../**/entity/*.entity{.ts,.js}',
       ],
