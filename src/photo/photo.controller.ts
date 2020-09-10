@@ -4,7 +4,7 @@ import { PhotoDto } from './dto/photo.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('photo')
-// @UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard)
 export class PhotoController {
     constructor(private photoService: PhotoService){}
 
