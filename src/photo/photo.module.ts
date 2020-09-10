@@ -1,10 +1,8 @@
-import { Module } from '@nestjs/common';
+import { Module, forwardRef } from '@nestjs/common';
 import { PhotoService } from './photo.service';
 import { PhotoController } from './photo.controller';
 import { photoProviders } from './photo.providers';
 import { DatabaseModule } from 'src/database/database.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { PhotoRepository } from './repository/photo.repository';
 import { AuthorModule } from 'src/author/author.module';
 import { AlbumModule } from 'src/album/album.module';
 
@@ -12,7 +10,8 @@ import { AlbumModule } from 'src/album/album.module';
   imports: [
     DatabaseModule,
     AuthorModule,
-    AlbumModule,
+    // AlbumModule,
+    forwardRef(() => AlbumModule),
   ],
   providers: [
     ...photoProviders,

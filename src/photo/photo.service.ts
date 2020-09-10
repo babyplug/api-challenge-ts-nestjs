@@ -1,5 +1,4 @@
-import { Injectable, Inject, NotFoundException } from '@nestjs/common';
-import { Repository } from 'typeorm';
+import { Injectable, Inject, NotFoundException, forwardRef } from '@nestjs/common';
 import { Photo } from './entity/photo.entity';
 import { PhotoRepository } from './repository/photo.repository';
 import { PhotoDto } from './dto/photo.dto';
@@ -15,7 +14,7 @@ export class PhotoService {
         // @Inject('PHOTO_REPOSITORY') private photoRepository: Repository<Photo>,
         @Inject(CONSTANT.PHOTO_REPOSITORY) private photoRepository: PhotoRepository,
         private authorService: AuthorService,
-        private albumService: AlbumService,
+        @Inject(forwardRef(() => AlbumService)) private albumService: AlbumService,
     ){}
 
     findAll(): Promise<Photo[]> {
