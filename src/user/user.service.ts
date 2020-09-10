@@ -8,7 +8,7 @@ import * as bcrypt from "bcryptjs";
 @Injectable()
 export class UserService {
     constructor(
-        @Inject(CONSTANT.PHOTO_REPOSITORY) private userRepository: UserRepository,
+        @Inject(CONSTANT.USER_REPOSITORY) private userRepository: UserRepository,
     ){}
 
     findAll(): Promise<User[]> {

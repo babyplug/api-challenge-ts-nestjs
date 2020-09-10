@@ -1,5 +1,4 @@
 import { Connection, Repository } from 'typeorm';
-import { User } from '../entity/user.entity';
 import { CONSTANT } from 'src/constant/constant';
 import { UserRepository } from '../repository/user.repository';
 

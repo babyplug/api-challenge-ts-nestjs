@@ -8,7 +8,7 @@ export class UserRepository extends Repository<User> {
         return this.createQueryBuilder("user")
                 .addSelect("user.password")
                 .where("username = :username", { username })
-                .orderBy("createDate", "DESC")
+                // .orderBy("createDate", "DESC")
                 .getMany()
     }
 

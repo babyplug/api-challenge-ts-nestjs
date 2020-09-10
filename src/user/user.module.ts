@@ -12,9 +12,8 @@ import { userProviders } from './providers/user.providers';
   controllers: [UserController],
   imports: [
     DatabaseModule,
-
   ],
-  export: [
+  exports: [
     UserService,
   ]
 })
