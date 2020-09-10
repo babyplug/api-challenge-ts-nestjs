@@ -26,11 +26,14 @@ export class AuthService {
             return null;
         }
 
-        const payload = { username: user.username, id: user.id };
+        const payload = { username: user.username, sub: user.id };
         const token = this.jwtService.sign(payload);
         
         return new TokenDto(token);
     }
 
-    
+    profile(req: any): Promise<User> {
+        const { userId } = req.user;
+        return this.userService.findById(userId);
+    }
 }
