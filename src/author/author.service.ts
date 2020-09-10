@@ -1,4 +1,4 @@
-import { Injectable, Inject, } from '@nestjs/common';
+import { Injectable, Inject, NotFoundException, } from '@nestjs/common';
 import { CONSTANT } from 'src/constant/constant';
 import { AuthorRepository } from './repository/author.repository';
 import { Author } from './entity/author.entity';
@@ -21,8 +21,10 @@ export class AuthorService {
         return this.authorRepo.save(dto)
     }
 
-    findById(id: number): Promise<Author> {
-        return this.authorRepo.findOne(id)
+    async findById(id: number): Promise<Author> {
+        const author = await this.authorRepo.findOne(id)
+        if (!author) throw new NotFoundException();
+        return author;
     }
 
     async updateById(id: number, form: AuthorDto): Promise<Author> {

@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@nestjs/common';
+import { Injectable, Inject, NotFoundException } from '@nestjs/common';
 import { AlbumRepository } from './repository/album.repository';
 import { CONSTANT } from 'src/constant/constant';
 import { Album } from './entity/album.entity';
@@ -14,8 +14,10 @@ export class AlbumService {
         return this.albumRepository.find();
     }
 
-    findById(id: number): Promise<Album> {
-        return this.albumRepository.findOne(id);
+    async findById(id: number): Promise<Album> {
+        const album = await this.albumRepository.findOne(id);
+        if (!album) throw new NotFoundException();
+        return album;
     }
 
     create(form: AlbumDto): Promise<Album> {

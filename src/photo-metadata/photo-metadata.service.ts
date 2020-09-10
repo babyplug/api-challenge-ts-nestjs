@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@nestjs/common';
+import { Injectable, Inject, NotFoundException } from '@nestjs/common';
 import { CONSTANT } from 'src/constant/constant';
 import { PhotoMetadataRepository } from './repository/photo-metadata.repository';
 import { PhotoMetadata } from './entity/photo-metadata.entity';
@@ -15,8 +15,10 @@ export class PhotoMetadataService {
         return this.photoMetadataRepository.find();
     }
 
-    findById(id: number): Promise<PhotoMetadata> {
-        return this.photoMetadataRepository.findOne(id);
+    async findById(id: number): Promise<PhotoMetadata> {
+        const photoMetadata = await this.photoMetadataRepository.findOne(id);
+        if (!photoMetadata) throw new NotFoundException();
+        return photoMetadata;
     }
 
     create(form: PhotoMetadataDto): Promise<PhotoMetadata> {

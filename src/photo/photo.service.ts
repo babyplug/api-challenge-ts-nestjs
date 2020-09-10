@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@nestjs/common';
+import { Injectable, Inject, NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Photo } from './entity/photo.entity';
 import { PhotoRepository } from './repository/photo.repository';
@@ -16,8 +16,10 @@ export class PhotoService {
         return this.photoRepository.find();
     }
 
-    findById(id: number): Promise<Photo> {
-        return this.photoRepository.findByIdAndDeleted(id);
+    async findById(id: number): Promise<Photo> {
+        const photo = await this.photoRepository.findByIdAndDeleted(id);
+        if (!photo) throw new NotFoundException();
+        return photo;
     }
 
     create(photoDto: PhotoDto): Promise<Photo> {
