@@ -4,7 +4,7 @@ import AlbumDto from './dto/album.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('album')
-// @UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard)
 export class AlbumController {
     constructor(private albumService: AlbumService){}
 
