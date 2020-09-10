@@ -1,5 +1,5 @@
 export class TokenDto {
-    prefix: string;
+    prefix: string = 'Bearer';
     accessToken: string;
 
     constructor(accessToken: string) {
