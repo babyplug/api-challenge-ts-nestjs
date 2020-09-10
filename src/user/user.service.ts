@@ -15,14 +15,14 @@ export class UserService {
         return this.userRepository.find({ });
     }
 
-    createUser(form: UserDto): Promise<User> {
+    async createUser(form: UserDto): Promise<User> {
         let dto = this.userRepository.create()
         // dto.deleted = false
         dto.firstName = form.firstName
         dto.lastName = form.lastName
         dto.age = form.age
         dto.username = form.username
-        dto.password = this.hashPassword(form.password);
+        dto.password = await this.hashPassword(form.password);
 
         return this.userRepository.save(dto)
     }
@@ -47,20 +47,20 @@ export class UserService {
     //     await this.userRepository.save(dto)
     // }
 
-    register(form: UserDto): Promise<void> {
+    async register(form: UserDto): Promise<void> {
         let dto = this.userRepository.create()
 
         dto.firstName = form.firstName
         dto.lastName = form.lastName
         dto.age = form.age
         dto.username = form.username
-        dto.password = this.hashPassword(form.password);
+        dto.password = await this.hashPassword(form.password);
 
         this.userRepository.save(dto)
     }
 
     private async hashPassword(password: string): Promise<string> {
-        return await bcrypt.hash(password, 10)
+        return await bcrypt.hash(password.trim(), 10)
     }
 
     findByUsernameWithPassword(username: string): Promise<User[]> {
