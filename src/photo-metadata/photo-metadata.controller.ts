@@ -1,8 +1,10 @@
-import { Controller, Get, Post, Body, Param, Put } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Put, UseGuards } from '@nestjs/common';
 import { PhotoMetadataService } from './photo-metadata.service';
 import PhotoMetadataDto from './dto/photo-metadata.dto';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('photo-metadata')
+@UseGuards(JwtAuthGuard)
 export class PhotoMetadataController {
     constructor(private photoMetadataService: PhotoMetadataService){}
 
