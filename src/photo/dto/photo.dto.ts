@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsBoolean, Min,  } from "class-validator";
+import { IsNotEmpty, IsNumber, IsBoolean, Min, IsArray, IsNumberString, IsBooleanString,  } from "class-validator";
 
 export class PhotoDto {
     @IsNotEmpty()
@@ -17,6 +17,7 @@ export class PhotoDto {
     isPublished: boolean;
 
     @IsNumber()
-    @Min(0)
     authorId: number;
+
+    albumIds: number[];
 }

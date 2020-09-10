@@ -1,10 +1,10 @@
-import { Controller, Get, Post, Body, Param, Put, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Put, UseGuards, Delete } from '@nestjs/common';
 import { AlbumService } from './album.service';
 import AlbumDto from './dto/album.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('album')
-@UseGuards(JwtAuthGuard)
+// @UseGuards(JwtAuthGuard)
 export class AlbumController {
     constructor(private albumService: AlbumService){}
 
@@ -26,5 +26,10 @@ export class AlbumController {
     @Put(':id') 
     async updateById(@Param('id') id: number, @Body() form: AlbumDto) {
         return await this.albumService.updateById(id, form);
+    }
+
+    @Delete(':id') 
+    async deleteById(@Param('id') id: number) {
+        return await this.albumService.deleteById(id);
     }
 }

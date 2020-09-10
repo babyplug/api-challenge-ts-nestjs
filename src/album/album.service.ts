@@ -33,4 +33,10 @@ export class AlbumService {
 
         return this.albumRepository.save(dto);
     }
+
+    async deleteById(id: number): Promise<void> {
+        const dto = await this.findById(id);
+
+        this.albumRepository.remove(dto);
+    }
 }
