@@ -60,6 +60,10 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+## Swagger UI
+You can visit swagger ui with path '/api/swagger' or you can set it manually by change it in 'src/main.ts' on line which has SwaggerModule.setup('PATH_THAT_YOU_WANT_TO_SHOW', app, document)
+![SwaggerUI](Swagger.PNG)
+
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
