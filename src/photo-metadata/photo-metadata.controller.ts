@@ -2,7 +2,10 @@ import { Controller, Get, Post, Body, Param, Put, UseGuards } from '@nestjs/comm
 import { PhotoMetadataService } from './photo-metadata.service';
 import PhotoMetadataDto from './dto/photo-metadata.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('PhotoMetadata')
+@ApiBearerAuth()
 @Controller('photo-metadata')
 @UseGuards(JwtAuthGuard)
 export class PhotoMetadataController {

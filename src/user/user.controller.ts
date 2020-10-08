@@ -2,7 +2,10 @@ import { Get, Post, Put, Delete, Controller, Body, Param, UseGuards } from '@nes
 import { UserService } from './user.service';
 import { UserDto } from './dto/user.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { ApiBearerAuth, ApiBody, ApiSecurity, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('User')
+@ApiBearerAuth()
 @Controller('user')
 @UseGuards(JwtAuthGuard)
 export class UserController {
@@ -14,6 +17,7 @@ export class UserController {
     }
 
     @Post()
+    @ApiBody({ type: [UserDto]})
     create(@Body() form: UserDto){
         return this.userService.createUser(form)
     }

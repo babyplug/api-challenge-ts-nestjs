@@ -2,7 +2,10 @@ import { Controller, Get, Post, Body, Param, Put, UseGuards, Delete } from '@nes
 import { AlbumService } from './album.service';
 import AlbumDto from './dto/album.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Album')
+@ApiBearerAuth()
 @Controller('album')
 @UseGuards(JwtAuthGuard)
 export class AlbumController {

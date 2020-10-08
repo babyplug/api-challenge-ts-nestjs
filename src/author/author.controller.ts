@@ -2,7 +2,10 @@ import { Controller, Get, Post, Body, Param, Put, UseGuards } from '@nestjs/comm
 import { AuthorService } from './author.service';
 import { AuthorDto } from './dto/author.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Author')
+@ApiBearerAuth()
 @Controller('author')
 @UseGuards(JwtAuthGuard)
 export class AuthorController {
